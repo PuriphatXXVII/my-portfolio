@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaDocker, FaGitAlt, FaRobot, FaDatabase } from 'react-icons/fa';
+import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaDocker, FaGitAlt, FaRobot, FaDatabase, FaPlay, FaPause } from 'react-icons/fa';
 import { SiTypescript, SiJavascript, SiSharp, SiNextdotjs, SiVite, SiTailwindcss, SiDotnet, SiExpress, SiSocketdotio, SiMongodb, SiPostgresql, SiGithubactions } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 
@@ -51,13 +51,15 @@ const midPoint = Math.ceil(allTechs.length / 2);
 const row1 = allTechs.slice(0, midPoint);
 const row2 = allTechs.slice(midPoint);
 
-// วนลูปต่อท้ายกันแค่ 2 ชุดเพื่อทำอัตราส่วนเลื่อน -50% แบบพิกเซลเป๊ะๆ
 const displayRow1 = [...row1, ...row1];
 const displayRow2 = [...row2, ...row2];
 
 export default function TechScroller() {
   const [showAll, setShowAll] = useState(false);
   const [mounted, setMounted] = useState(false);
+  
+  // === สร้าง State สำหรับควบคุมการหยุด/เล่นแอนิเมชัน ===
+  const [isPaused, setIsPaused] = useState(false); 
 
   useEffect(() => {
     setMounted(true);
@@ -65,7 +67,6 @@ export default function TechScroller() {
 
   return (
     <div className="w-full mt-4">
-      {/* ใช้คีย์เฟรมเลื่อนทีละ 50% และฝังคำสั่งล็อกฮาร์ดแวร์เรนเดอร์ให้ภาพสมูทไม่มีสั่น */}
       <style>{`
         @keyframes marquee-left-perfect {
           0% { transform: translate3d(0, 0, 0); }
@@ -80,19 +81,33 @@ export default function TechScroller() {
           will-change: transform;
           transform-style: preserve-3d;
           backface-visibility: hidden;
+          animation-play-state: ${isPaused ? 'paused' : 'running'}; 
         }
         .animate-marquee-right-gpu {
           animation: marquee-right-perfect 45s linear infinite;
           will-change: transform;
           transform-style: preserve-3d;
           backface-visibility: hidden;
+          animation-play-state: ${isPaused ? 'paused' : 'running'};
         }
       `}</style>
 
-      <div className="flex items-center justify-between mb-4 px-2">
-        <p className="text-blue-200 text-xs font-semibold uppercase tracking-widest">
-          Tech Stack
-        </p>
+      <div className="flex items-center justify-between mb-12 px-2 -mt-2">
+        <div className="flex items-center gap-3">
+          <p className="text-blue-200 text-xs font-semibold uppercase tracking-widest">
+            Tech Stack
+          </p>
+          
+          <button
+            onPointerDown={(e) => e.stopPropagation()}
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); setIsPaused(!isPaused); }}
+            className="w-7 h-7 flex items-center justify-center bg-white/10 hover:bg-white/20 text-white rounded-full transition border border-white/20 shadow-sm"
+            title={isPaused ? "Play" : "Pause"}
+          >
+            {isPaused ? <FaPlay size={10} className="ml-0.5 text-green-400" /> : <FaPause size={10} className="text-yellow-400" />}
+          </button>
+        </div>
+
         <button
           onPointerDown={(e) => e.stopPropagation()}
           onClick={(e) => { e.preventDefault(); e.stopPropagation(); setShowAll(true); }}
@@ -106,7 +121,6 @@ export default function TechScroller() {
          className="flex flex-col gap-4 overflow-hidden relative w-full"
          style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
       >
-        {/* แถวที่ 1 เลื่อนซ้าย ( Single Strip แถวเดียวเพียวๆ ) */}
         <div className="flex w-max animate-marquee-left-gpu gap-3 pr-3">
           {displayRow1.map((tech, idx) => (
             <span key={`r1-${idx}`} className="bg-white text-gray-900 shadow-sm flex items-center gap-2 text-sm px-4 py-2 rounded-full whitespace-nowrap font-semibold">
@@ -116,7 +130,6 @@ export default function TechScroller() {
           ))}
         </div>
 
-        {/* แถวที่ 2 เลื่อนขวา ( Single Strip แถวเดียวเพียวๆ ) */}
         <div className="flex w-max animate-marquee-right-gpu gap-3 pr-3">
           {displayRow2.map((tech, idx) => (
             <span key={`r2-${idx}`} className="bg-white text-gray-900 shadow-sm flex items-center gap-2 text-sm px-4 py-2 rounded-full whitespace-nowrap font-semibold">
@@ -127,11 +140,10 @@ export default function TechScroller() {
         </div>
       </div>
 
-      {/* View All Modal */}
       {mounted && createPortal(
         <AnimatePresence>
           {showAll && (
-            <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4">
+            <div className="fixed inset-0 z-9999 flex items-center justify-center p-4">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -147,7 +159,8 @@ export default function TechScroller() {
                 exit={{ opacity: 0, scale: 0.95, y: 20 }}
                 onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => e.stopPropagation()}
-                className="bg-gray-900 rounded-[2.5rem] p-8 md:p-12 max-w-4xl w-full max-h-[85vh] overflow-y-auto relative shadow-2xl border border-gray-700 z-10"
+                /* === จุดที่แก้: ใส่คลาสซ่อน Scrollbar แท่งหนาๆ สีเทาตรงนี้ครับ === */
+                className="bg-gray-900 rounded-[2.5rem] p-8 md:p-12 max-w-4xl w-full max-h-[85vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative shadow-2xl border border-gray-700 z-10"
               >
                 <button
                   onClick={(e) => { e.stopPropagation(); setShowAll(false); }}
