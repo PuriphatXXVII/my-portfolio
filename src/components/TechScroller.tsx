@@ -51,7 +51,7 @@ const midPoint = Math.ceil(allTechs.length / 2);
 const row1 = allTechs.slice(0, midPoint);
 const row2 = allTechs.slice(midPoint);
 
-// ก๊อปปี้ 2 ชุดให้ยาวพอและใช้ทำ Seamless Loop
+// วนลูปต่อท้ายกันแค่ 2 ชุดเพื่อทำอัตราส่วนเลื่อน -50% แบบพิกเซลเป๊ะๆ
 const displayRow1 = [...row1, ...row1];
 const displayRow2 = [...row2, ...row2];
 
@@ -65,23 +65,27 @@ export default function TechScroller() {
 
   return (
     <div className="w-full mt-4">
-      {/* ใช้ translate3d เพื่อบังคับใช้การ์ดจอ (GPU) คำนวณ ทำให้ลื่นขึ้นมาก และปรับเวลาให้ช้าลง */}
+      {/* ใช้คีย์เฟรมเลื่อนทีละ 50% และฝังคำสั่งล็อกฮาร์ดแวร์เรนเดอร์ให้ภาพสมูทไม่มีสั่น */}
       <style>{`
-        @keyframes scroll-left {
+        @keyframes marquee-left-perfect {
           0% { transform: translate3d(0, 0, 0); }
-          100% { transform: translate3d(-100%, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
         }
-        @keyframes scroll-right {
-          0% { transform: translate3d(-100%, 0, 0); }
+        @keyframes marquee-right-perfect {
+          0% { transform: translate3d(-50%, 0, 0); }
           100% { transform: translate3d(0, 0, 0); }
         }
-        .animate-scroll-left {
-          animation: scroll-left 50s linear infinite;
+        .animate-marquee-left-gpu {
+          animation: marquee-left-perfect 40s linear infinite;
           will-change: transform;
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
         }
-        .animate-scroll-right {
-          animation: scroll-right 60s linear infinite;
+        .animate-marquee-right-gpu {
+          animation: marquee-right-perfect 45s linear infinite;
           will-change: transform;
+          transform-style: preserve-3d;
+          backface-visibility: hidden;
         }
       `}</style>
 
@@ -102,44 +106,24 @@ export default function TechScroller() {
          className="flex flex-col gap-4 overflow-hidden relative w-full"
          style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
       >
-        {/* แถวที่ 1 เลื่อนซ้าย */}
-        <div className="flex w-full">
-          <div className="flex w-max animate-scroll-left gap-3 pr-3">
-            {displayRow1.map((tech, idx) => (
-              <span key={`r1a-${idx}`} className="bg-white text-gray-900 shadow-sm flex items-center gap-2 text-sm px-4 py-2 rounded-full whitespace-nowrap font-semibold">
-                {getIcon(tech)}
-                {tech}
-              </span>
-            ))}
-          </div>
-          <div className="flex w-max animate-scroll-left gap-3 pr-3" aria-hidden="true">
-            {displayRow1.map((tech, idx) => (
-              <span key={`r1b-${idx}`} className="bg-white text-gray-900 shadow-sm flex items-center gap-2 text-sm px-4 py-2 rounded-full whitespace-nowrap font-semibold">
-                {getIcon(tech)}
-                {tech}
-              </span>
-            ))}
-          </div>
+        {/* แถวที่ 1 เลื่อนซ้าย ( Single Strip แถวเดียวเพียวๆ ) */}
+        <div className="flex w-max animate-marquee-left-gpu gap-3 pr-3">
+          {displayRow1.map((tech, idx) => (
+            <span key={`r1-${idx}`} className="bg-white text-gray-900 shadow-sm flex items-center gap-2 text-sm px-4 py-2 rounded-full whitespace-nowrap font-semibold">
+              {getIcon(tech)}
+              {tech}
+            </span>
+          ))}
         </div>
 
-        {/* แถวที่ 2 เลื่อนขวา */}
-        <div className="flex w-full">
-          <div className="flex w-max animate-scroll-right gap-3 pr-3">
-            {displayRow2.map((tech, idx) => (
-              <span key={`r2a-${idx}`} className="bg-white text-gray-900 shadow-sm flex items-center gap-2 text-sm px-4 py-2 rounded-full whitespace-nowrap font-semibold">
-                {getIcon(tech)}
-                {tech}
-              </span>
-            ))}
-          </div>
-          <div className="flex w-max animate-scroll-right gap-3 pr-3" aria-hidden="true">
-            {displayRow2.map((tech, idx) => (
-              <span key={`r2b-${idx}`} className="bg-white text-gray-900 shadow-sm flex items-center gap-2 text-sm px-4 py-2 rounded-full whitespace-nowrap font-semibold">
-                {getIcon(tech)}
-                {tech}
-              </span>
-            ))}
-          </div>
+        {/* แถวที่ 2 เลื่อนขวา ( Single Strip แถวเดียวเพียวๆ ) */}
+        <div className="flex w-max animate-marquee-right-gpu gap-3 pr-3">
+          {displayRow2.map((tech, idx) => (
+            <span key={`r2-${idx}`} className="bg-white text-gray-900 shadow-sm flex items-center gap-2 text-sm px-4 py-2 rounded-full whitespace-nowrap font-semibold">
+              {getIcon(tech)}
+              {tech}
+            </span>
+          ))}
         </div>
       </div>
 
