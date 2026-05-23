@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-// ย้าย Type มาไว้ที่นี่ที่เดียวเลย จะได้เรียกใช้ง่ายๆ
-export type CardType = 'hero' | 'projects' | 'about' | 'connect' | null;
+// รวม Type ไว้ที่เดียว เรียกใช้ง่าย
+export type CardType = 'hero' | 'projects' | 'about' | 'connect' | 'certificates' | null;
 
 export function useCard() {
   const [expanded, setExpanded] = useState<CardType>(null);

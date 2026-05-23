@@ -1,55 +1,42 @@
 import { motion } from 'framer-motion'
-import { FiHome, FiGrid, FiUser, FiMail } from 'react-icons/fi'
+import Navbar from '../components/Navbar'
 import HomeGrid from '../components/HomeGrid'
 import ExpandedModal from '../components/ExpandedModal'
 import { useCard } from '../hooks/useCard'
 
 export default function HomePage() {
-  // เรียกใช้ Hook ที่เราสร้างไว้ แค่บรรทัดเดียวจบ!
-  const { expanded, setExpanded, closeCard } = useCard();
+  const { expanded, setExpanded, closeCard } = useCard()
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 p-4 md:p-8 lg:p-12 md:pl-32 lg:pl-40 flex flex-col items-center overflow-x-hidden">
-      
-      {/* --- โซน Side Navigation --- */}
-      <nav className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-40 bg-gray-900/95 backdrop-blur-md rounded-[2rem] py-8 px-4 flex-col items-center gap-8 shadow-2xl border border-gray-800">
-        <div className="text-white font-black text-xl mb-4 border-b border-gray-700 pb-6 w-full text-center">
-          PS
-        </div>
-        <button className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200" title="Home">
-          <FiHome size={22} />
-        </button>
-        <button className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200" title="Projects">
-          <FiGrid size={22} />
-        </button>
-        <button className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200" title="About Me">
-          <FiUser size={22} />
-        </button>
-        <button className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200 mt-4" title="Connect">
-          <FiMail size={22} />
-        </button>
-      </nav>
+    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+      <Navbar active={expanded} onNavigate={setExpanded} />
 
-      {/* --- โซน Header --- */}
-      <motion.div 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="w-full text-center mb-10 md:mb-14 mt-4 md:mt-8 relative z-10"
-      >
-        <p className="text-gray-400 text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-2">
-          Portfolio of
-        </p>
-        <h1 className="text-gray-900 text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
-          Puriphat Srikamnoi
-        </h1>
-      </motion.div>
+      {/* padding สมมาตรซ้าย/ขวา เพื่อให้ content อยู่ตรงกลาง viewport
+          (nav fixed ที่ left-6 w-56 จบที่ ~248px → pl ต้อง ≥ 256) */}
+      <main className="px-4 md:pl-64 md:pr-8 lg:px-64 xl:px-72 pb-28 md:pb-12 min-h-screen flex flex-col">
+        <section className="flex-1 flex flex-col items-center pt-6 md:pt-12">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full text-center mb-10 md:mb-14 mt-4 md:mt-6 relative z-10"
+          >
+            <p className="text-gray-400 text-xs md:text-sm font-bold tracking-[0.3em] uppercase mb-2">
+              Portfolio of
+            </p>
+            <h1 className="text-gray-900 text-3xl md:text-4xl lg:text-5xl font-black uppercase tracking-tight">
+              BrownieCookies
+            </h1>
+          </motion.div>
 
-      {/* --- เรียกใช้ Home Grid Component --- */}
-      <HomeGrid setExpanded={setExpanded} />
+          <HomeGrid setExpanded={setExpanded} />
+        </section>
 
-      {/* --- เรียกใช้ Modal Component --- */}
+        <footer className="max-w-350 mx-auto w-full text-center text-gray-400 text-sm py-8 border-t border-gray-100 mt-12">
+          © {new Date().getFullYear()} Puriphat Srikamnoi · Built with React, TypeScript &amp; Framer Motion
+        </footer>
+      </main>
+
       <ExpandedModal expanded={expanded} closeCard={closeCard} />
-      
     </div>
   )
 }

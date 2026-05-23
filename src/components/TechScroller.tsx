@@ -160,7 +160,7 @@ export default function TechScroller() {
                 onPointerDown={(e) => e.stopPropagation()}
                 onClick={(e) => e.stopPropagation()}
                 /* === จุดที่แก้: ใส่คลาสซ่อน Scrollbar แท่งหนาๆ สีเทาตรงนี้ครับ === */
-                className="bg-gray-900 rounded-[2.5rem] p-8 md:p-12 max-w-4xl w-full max-h-[85vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] relative shadow-2xl border border-gray-700 z-10"
+                className="bg-gray-900 rounded-[2.5rem] p-8 md:p-12 max-w-4xl w-full max-h-[85vh] overflow-y-auto scrollbar-none [&::-webkit-scrollbar]:hidden relative shadow-2xl border border-gray-700 z-10"
               >
                 <button
                   onClick={(e) => { e.stopPropagation(); setShowAll(false); }}
