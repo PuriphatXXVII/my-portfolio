@@ -29,7 +29,7 @@ export default function Navbar({ active, onNavigate }: NavbarProps) {
         initial={false}
         animate={{ width: collapsed ? 80 : 224 }}
         transition={{ type: 'spring', stiffness: 280, damping: 30 }}
-        className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 bg-gray-900/95 backdrop-blur-md rounded-[2rem] py-6 px-5 flex-col shadow-2xl border border-gray-800 overflow-hidden"
+        className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 bg-gray-900/95 backdrop-blur-md rounded-4xl py-6 px-5 flex-col shadow-2xl border border-gray-800 overflow-hidden"
       >
         {/* === Header swap: "NAVIGATION" ↔ "PS" === */}
         <div className="h-7 mb-5 relative">
@@ -71,7 +71,7 @@ export default function Navbar({ active, onNavigate }: NavbarProps) {
         {/* === Nav items === */}
         <div className="relative flex flex-col gap-2.5">
           {/* Timeline line วิ่งผ่านกึ่งกลางไอคอน */}
-          <div className="absolute left-[19px] top-5 bottom-5 w-px bg-gray-700/70" aria-hidden />
+          <div className="absolute left-4.75 top-5 bottom-5 w-px bg-gray-700/70" aria-hidden />
 
           {NAV_ITEMS.map((item) => {
             const isActive = active === item.id
