@@ -53,10 +53,10 @@ export default function HomeGrid({ setExpanded }: HomeGridProps) {
         whileHover={{ scale: 1.015 }}
         whileTap={{ scale: 0.99 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="md:col-span-2 min-h-[420px] lg:min-h-[480px] bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-[2.5rem] md:rounded-[3rem] p-10 lg:p-12 flex flex-col justify-between cursor-pointer overflow-hidden relative shadow-lg"
+        className="md:col-span-2 min-h-105 lg:min-h-120 bg-linear-to-br from-blue-600 via-indigo-600 to-purple-700 rounded-[2.5rem] md:rounded-[3rem] p-10 lg:p-12 flex flex-col justify-between cursor-pointer overflow-hidden relative shadow-lg"
       >
         {/* === Animated colored blobs === */}
-        <motion.div aria-hidden className="absolute -bottom-32 -right-32 w-[28rem] h-[28rem] bg-blue-400 rounded-full blur-3xl opacity-60 pointer-events-none"
+        <motion.div aria-hidden className="absolute -bottom-32 -right-32 w-md h-112 bg-blue-400 rounded-full blur-3xl opacity-60 pointer-events-none"
           animate={{ x: [0, 30, -10, 0], y: [0, -20, 15, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }} />
         <motion.div aria-hidden className="absolute -top-24 -left-20 w-80 h-80 bg-pink-500 rounded-full blur-3xl opacity-40 pointer-events-none"
@@ -127,7 +127,7 @@ export default function HomeGrid({ setExpanded }: HomeGridProps) {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.99 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-gray-900 rounded-[2.5rem] md:rounded-[3rem] p-8 lg:p-10 flex flex-col justify-between cursor-pointer shadow-lg min-h-[300px] relative overflow-hidden"
+        className="bg-gray-900 rounded-[2.5rem] md:rounded-[3rem] p-8 lg:p-10 flex flex-col justify-between cursor-pointer shadow-lg min-h-75 relative overflow-hidden"
       >
         <motion.div aria-hidden className="absolute -bottom-20 -right-16 w-72 h-72 bg-indigo-500 rounded-full blur-3xl opacity-50 pointer-events-none"
           animate={{ scale: [1, 1.3, 1], x: [0, 15, 0] }}
@@ -188,7 +188,7 @@ export default function HomeGrid({ setExpanded }: HomeGridProps) {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.99 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-gray-100 rounded-[2.5rem] md:rounded-[3rem] p-8 lg:p-10 flex flex-col justify-between cursor-pointer shadow-lg border border-gray-200 min-h-[280px] relative overflow-hidden"
+        className="bg-gray-100 rounded-[2.5rem] md:rounded-[3rem] p-8 lg:p-10 flex flex-col justify-between cursor-pointer shadow-lg border border-gray-200 min-h-70 relative overflow-hidden"
       >
         <motion.div aria-hidden className="absolute -top-12 -left-12 w-56 h-56 bg-blue-200/70 rounded-full blur-3xl pointer-events-none"
           animate={{ x: [0, 25, 0], y: [0, 15, 0], scale: [1, 1.1, 1] }}
@@ -236,7 +236,7 @@ export default function HomeGrid({ setExpanded }: HomeGridProps) {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.99 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-linear-to-br from-amber-400 via-orange-400 to-amber-500 rounded-[2.5rem] md:rounded-[3rem] p-8 lg:p-10 flex flex-col justify-between cursor-pointer shadow-lg border border-amber-500 min-h-[280px] relative overflow-hidden"
+        className="bg-linear-to-br from-amber-400 via-orange-400 to-amber-500 rounded-[2.5rem] md:rounded-[3rem] p-8 lg:p-10 flex flex-col justify-between cursor-pointer shadow-lg border border-amber-500 min-h-70 relative overflow-hidden"
       >
         <motion.div aria-hidden className="absolute -top-20 -right-12 w-72 h-72 bg-yellow-300 rounded-full blur-3xl opacity-60 pointer-events-none"
           animate={{ x: [0, -15, 0], y: [0, 10, 0] }}
@@ -277,7 +277,7 @@ export default function HomeGrid({ setExpanded }: HomeGridProps) {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.99 }}
         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-yellow-300 rounded-[2.5rem] md:rounded-[3rem] p-8 lg:p-10 flex flex-col justify-between cursor-pointer shadow-lg border border-yellow-400 min-h-[280px] relative overflow-hidden"
+        className="bg-yellow-300 rounded-[2.5rem] md:rounded-[3rem] p-8 lg:p-10 flex flex-col justify-between cursor-pointer shadow-lg border border-yellow-400 min-h-70 relative overflow-hidden"
       >
         <motion.div aria-hidden className="absolute -top-24 -right-12 w-72 h-72 bg-orange-300 rounded-full blur-3xl opacity-60 pointer-events-none"
           animate={{ scale: [1, 1.15, 1], x: [0, -15, 0] }}
