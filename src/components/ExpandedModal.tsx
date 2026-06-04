@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { FaLinkedinIn, FaFacebookF, FaGithub } from 'react-icons/fa'
 import { FiAward } from 'react-icons/fi'
+import myPhoto from '../assets/myphoto.jpg'
 import TechScroller from './TechScroller'
 import ProjectsSection from './ProjectsSection'
 import AboutSection from './AboutSection'
@@ -16,8 +17,15 @@ interface ModalProps {
 // === HeroPanel — รูปลอยขวาบน + intro + tech stack ===
 function HeroPanel({ techReady }: { techReady: boolean }) {
   return (
-    <div className="text-white flex flex-col text-left">
-      <div className="relative z-10 mt-2 w-full md:w-[88%] lg:w-[82%]">
+    <div className="text-white flex flex-col text-left relative">
+      {/* Photo: shown on tablet/desktop, hidden on mobile (looked cramped) */}
+      <img
+        src={myPhoto}
+        alt="Puriphat"
+        className="hidden sm:block absolute top-[5%] -right-16 md:-right-24 w-56 h-56 md:w-88 md:h-88 rounded-full object-cover object-[center_20%] border-8 border-white/20 shadow-2xl z-0"
+      />
+
+      <div className="relative z-10 mt-2 w-full sm:w-[60%] lg:w-[65%]">
         <p className="text-blue-200 text-base md:text-lg font-semibold mb-3 tracking-wide">
           Specialized in
         </p>
