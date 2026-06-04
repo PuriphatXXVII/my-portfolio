@@ -2,16 +2,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaDocker, FaGitAlt, FaRobot, FaDatabase, FaPlay, FaPause } from 'react-icons/fa';
-import { SiTypescript, SiJavascript, SiSharp, SiNextdotjs, SiVite, SiTailwindcss, SiDotnet, SiExpress, SiSocketdotio, SiMongodb, SiPostgresql, SiGithubactions } from 'react-icons/si';
+import { SiTypescript, SiJavascript, SiSharp, SiNextdotjs, SiVite, SiTailwindcss, SiDotnet, SiExpress, SiSocketdotio, SiMongodb, SiPostgresql, SiGithubactions, SiFastapi, SiSupabase, SiVercel, SiRailway, SiRedis, SiClerk, SiAnthropic } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 
 const techGroups = [
   { title: 'Languages', items: ['Python', 'TypeScript', 'JavaScript', 'Java', 'C#', 'HTML', 'CSS'] },
   { title: 'Frontend', items: ['React', 'Next.js', 'Vite', 'Tailwind CSS', '.NET MAUI'] },
-  { title: 'Backend', items: ['Node.js', 'Express', '.NET Backend', 'Socket.io'] },
-  { title: 'Database', items: ['MongoDB', 'SQL', 'PostgreSQL'] },
-  { title: 'DevOps', items: ['GitHub Actions', 'Docker', 'Git', 'VS Code'] },
-  { title: 'AI', items: ['Claude AI', 'Anthropic API', 'Prompt Engineering'] }
+  { title: 'Backend', items: ['FastAPI', 'Node.js', 'Express', '.NET Backend', 'Socket.io', 'Clerk'] },
+  { title: 'Database', items: ['PostgreSQL', 'MongoDB', 'SQL', 'Redis'] },
+  { title: 'Cloud & DevOps', items: ['Vercel', 'Railway', 'Supabase', 'GitHub Actions', 'Docker', 'Git', 'VS Code'] },
+  { title: 'AI', items: ['Claude AI', 'Anthropic API', 'Voyage AI', 'Prompt Engineering'] }
 ];
 
 const getIcon = (tech: string) => {
@@ -39,8 +39,15 @@ const getIcon = (tech: string) => {
     case 'Docker': return <FaDocker className="text-blue-500 text-lg" />;
     case 'Git': return <FaGitAlt className="text-orange-500 text-lg" />;
     case 'VS Code': return <VscVscode className="text-blue-500 text-lg" />;
+    case 'FastAPI': return <SiFastapi className="text-teal-500 text-lg" />;
+    case 'Clerk': return <SiClerk className="text-purple-600 text-lg" />;
+    case 'Redis': return <SiRedis className="text-red-500 text-lg" />;
+    case 'Vercel': return <SiVercel className="text-gray-900 text-lg" />;
+    case 'Railway': return <SiRailway className="text-gray-900 text-lg" />;
+    case 'Supabase': return <SiSupabase className="text-emerald-500 text-lg" />;
     case 'Claude AI':
-    case 'Anthropic API':
+    case 'Anthropic API': return <SiAnthropic className="text-orange-500 text-lg" />;
+    case 'Voyage AI':
     case 'Prompt Engineering': return <FaRobot className="text-indigo-500 text-lg" />;
     default: return <span className="w-2 h-2 rounded-full bg-gray-400"></span>;
   }

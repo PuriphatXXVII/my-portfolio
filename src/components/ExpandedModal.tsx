@@ -2,7 +2,6 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { FaLinkedinIn, FaFacebookF, FaGithub } from 'react-icons/fa'
 import { FiAward } from 'react-icons/fi'
-import myPhoto from '../assets/myphoto.jpg'
 import TechScroller from './TechScroller'
 import ProjectsSection from './ProjectsSection'
 import AboutSection from './AboutSection'
@@ -17,18 +16,12 @@ interface ModalProps {
 // === HeroPanel — รูปลอยขวาบน + intro + tech stack ===
 function HeroPanel({ techReady }: { techReady: boolean }) {
   return (
-    <div className="text-white flex flex-col text-left relative">
-      <img
-        src={myPhoto}
-        alt="Puriphat"
-        className="absolute top-[3%] -right-12 sm:-right-16 md:-right-24 w-32 h-32 sm:w-56 sm:h-56 md:w-88 md:h-88 rounded-full object-cover object-[center_20%] border-4 sm:border-8 border-white/20 shadow-2xl z-0"
-      />
-
-      <div className="relative z-10 mt-2 w-full pr-20 sm:pr-0 sm:w-[60%] lg:w-[65%]">
+    <div className="text-white flex flex-col text-left">
+      <div className="relative z-10 mt-2 w-full md:w-[88%] lg:w-[82%]">
         <p className="text-blue-200 text-base md:text-lg font-semibold mb-3 tracking-wide">
           Specialized in
         </p>
-        <h2 className="text-white text-[1.7rem] sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] mb-4 tracking-tight">
+        <h2 className="text-white text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.15] mb-4 tracking-tight">
           Full Stack Dev <span className="opacity-70">|</span><br />
           AI Automation
         </h2>

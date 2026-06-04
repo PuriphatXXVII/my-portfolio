@@ -88,9 +88,9 @@ export default function HomeGrid({ setExpanded }: HomeGridProps) {
           Available for work
         </div>
 
-        <div className="relative z-10 mt-4 text-left pr-24 sm:pr-0 sm:w-2/3">
+        <div className="relative z-10 mt-4 text-left pr-28 sm:pr-0 sm:w-2/3">
           <p className="text-blue-200 text-sm md:text-base font-semibold mb-4 tracking-wide">Specialized in</p>
-          <h2 className="text-white text-[1.8rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black leading-[1.1] mb-6 tracking-tight">
+          <h2 className="text-white text-[1.7rem] sm:text-5xl md:text-6xl lg:text-[4.5rem] font-black leading-[1.1] mb-6 tracking-tight">
             Full Stack Dev |<br/>AI Automation
           </h2>
         </div>
@@ -104,18 +104,18 @@ export default function HomeGrid({ setExpanded }: HomeGridProps) {
 
         {/* Photo with idle float */}
         <motion.img src={myPhoto} alt="Puriphat"
-          className="absolute top-1/2 -right-8 sm:-right-12 md:-right-16 w-32 h-32 sm:w-48 sm:h-48 md:w-72 md:h-72 rounded-full object-cover object-[center_20%] border-4 border-white/40 shadow-2xl z-10"
+          className="absolute top-1/2 -right-12 sm:-right-12 md:-right-16 w-40 h-40 sm:w-48 sm:h-48 md:w-72 md:h-72 rounded-full object-cover object-[center_20%] border-4 border-white/40 shadow-2xl z-10"
           style={{ y: '-50%' }}
           animate={{ translateY: [0, -10, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} />
 
         {/* Rotating dashed ring */}
-        <motion.div aria-hidden className="absolute top-1/2 -right-14 sm:-right-20 md:-right-24 w-48 h-48 sm:w-64 sm:h-64 md:w-96 md:h-96 -translate-y-1/2 rounded-full border-2 border-dashed border-white/20 pointer-events-none"
+        <motion.div aria-hidden className="absolute top-1/2 -right-16 sm:-right-20 md:-right-24 w-56 h-56 sm:w-64 sm:h-64 md:w-96 md:h-96 -translate-y-1/2 rounded-full border-2 border-dashed border-white/20 pointer-events-none"
           animate={{ rotate: 360 }}
           transition={{ duration: 30, repeat: Infinity, ease: 'linear' }} />
 
         {/* Counter-rotating second ring */}
-        <motion.div aria-hidden className="absolute top-1/2 -right-12 sm:-right-16 md:-right-20 w-40 h-40 sm:w-56 sm:h-56 md:w-80 md:h-80 -translate-y-1/2 rounded-full border border-white/10 pointer-events-none"
+        <motion.div aria-hidden className="absolute top-1/2 -right-12 sm:-right-16 md:-right-20 w-48 h-48 sm:w-56 sm:h-56 md:w-80 md:h-80 -translate-y-1/2 rounded-full border border-white/10 pointer-events-none"
           animate={{ rotate: -360 }}
           transition={{ duration: 45, repeat: Infinity, ease: 'linear' }} />
       </motion.div>
