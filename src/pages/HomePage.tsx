@@ -32,7 +32,7 @@ export default function HomePage() {
         </section>
 
         <footer className="max-w-350 mx-auto w-full text-center text-gray-400 text-sm py-8 border-t border-gray-100 mt-12">
-          © {new Date().getFullYear()} Puriphat Srikamnoi · Built with React, TypeScript &amp; Framer Motion
+          © {new Date().getFullYear()} Puriphat Srikamnoi
         </footer>
       </main>
 
