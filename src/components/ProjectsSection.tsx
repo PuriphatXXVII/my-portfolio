@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { FaGithub, FaPython, FaDiscord } from 'react-icons/fa'
-import { SiClaude, SiGithubactions, SiReact, SiTypescript, SiTailwindcss, SiVite } from 'react-icons/si'
+import { SiClaude, SiFastapi, SiGithubactions, SiNextdotjs, SiPostgresql, SiReact, SiTypescript, SiTailwindcss, SiVite } from 'react-icons/si'
 import { FiArrowLeft, FiArrowUpRight, FiExternalLink, FiCode } from 'react-icons/fi'
 
 type Category = 'AI' | 'WEB' | 'AUTOMATION'
@@ -27,6 +27,31 @@ type Project = {
 
 // 👉 เพิ่มโปรเจกต์ที่นี่
 const PROJECTS: Project[] = [
+  {
+    id: 'smartdesk-ai',
+    title: 'SmartDesk AI',
+    tagline: 'Turn your docs into a 24/7 AI support agent',
+    description:
+      'A multi-tenant RAG support SaaS: businesses upload their docs, embed one line of code, and let AI resolve customer questions — accurately, instantly, and grounded in their own content with citations.',
+    category: 'AI',
+    status: 'live',
+    year: '2026',
+    tags: [
+      { label: 'Next.js', icon: <SiNextdotjs /> },
+      { label: 'FastAPI', icon: <SiFastapi /> },
+      { label: 'Claude AI', icon: <SiClaude /> },
+      { label: 'pgvector', icon: <SiPostgresql /> },
+    ],
+    repo: 'https://github.com/PuriphatXXVII/SmartDesk-AI',
+    demo: 'https://smart-desk-ai-lyart.vercel.app',
+    highlights: [
+      'Full RAG pipeline — parse → chunk → embed (Voyage) → pgvector cosine search → Claude answers with citations',
+      'Multi-tenant with Clerk auth, per-org isolation, and a 5 KB embeddable chat widget (one script tag)',
+      'Shipped end-to-end: Next.js on Vercel, FastAPI on Railway, Postgres/pgvector on Supabase, Redis on Upstash',
+    ],
+    theme: 'rose',
+    previewLabel: 'RAG · SaaS',
+  },
   {
     id: 'ai-cicd-monitor',
     title: 'AI-Powered CI/CD Monitor',
