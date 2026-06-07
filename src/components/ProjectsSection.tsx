@@ -7,7 +7,7 @@ import { FiArrowLeft, FiArrowUpRight, FiExternalLink, FiCode } from 'react-icons
 
 type Category = 'AI' | 'WEB' | 'AUTOMATION'
 type Status = 'live' | 'in-progress' | 'concept'
-type ThemeKey = 'indigo' | 'emerald' | 'rose' | 'amber'
+type ThemeKey = 'indigo' | 'emerald' | 'rose' | 'amber' | 'violet'
 
 type Project = {
   id: string
@@ -75,6 +75,30 @@ const PROJECTS: Project[] = [
     ],
     theme: 'amber',
     previewLabel: 'Multi-Agent · AI',
+  },
+  {
+    id: 'pixel-studio',
+    title: 'Pixel Studio',
+    tagline: 'AI models design UI — and judge their own work',
+    description:
+      'A multi-model agent studio that designs UI components: a Builder generates a Tailwind component, a vision Critic (Claude) looks at the rendered screenshot and drives a revise loop, and rival models battle head-to-head on a leaderboard.',
+    category: 'AI',
+    status: 'live',
+    year: '2026',
+    tags: [
+      { label: 'Claude Vision', icon: <SiClaude /> },
+      { label: 'Playwright', icon: <FiCode /> },
+      { label: 'Node.js', icon: <SiNodedotjs /> },
+      { label: 'Tailwind', icon: <SiTailwindcss /> },
+    ],
+    repo: 'https://github.com/PuriphatXXVII/pixel-studio',
+    highlights: [
+      'Vision-critic loop — Claude looks at the rendered screenshot, scores it, and the builder revises until it passes',
+      'Model Battle — rival models design the same brief; a leaderboard tracks win-rate (Opus avg 8.0 vs Haiku 7.7)',
+      'Pluggable multi-model panel + keyless stub fallback; built end-to-end with Node + Playwright',
+    ],
+    theme: 'violet',
+    previewLabel: 'Multi-Model · AI',
   },
   {
     id: 'ai-cicd-monitor',
@@ -154,6 +178,12 @@ const THEME = {
     glow: 'bg-amber-300',
     chip: 'bg-amber-500/20 text-amber-200 border-amber-300/30',
     accent: 'text-amber-300',
+  },
+  violet: {
+    bg: 'from-violet-500 via-purple-600 to-fuchsia-700',
+    glow: 'bg-violet-400',
+    chip: 'bg-violet-500/20 text-violet-200 border-violet-300/30',
+    accent: 'text-violet-300',
   },
 } as const
 
