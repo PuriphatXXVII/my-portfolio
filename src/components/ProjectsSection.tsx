@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { FaGithub, FaPython, FaDiscord } from 'react-icons/fa'
-import { SiClaude, SiFastapi, SiGithubactions, SiNextdotjs, SiPostgresql, SiReact, SiTypescript, SiTailwindcss, SiVite } from 'react-icons/si'
+import { SiClaude, SiFastapi, SiGithubactions, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiTypescript, SiTailwindcss, SiVite } from 'react-icons/si'
 import { FiArrowLeft, FiArrowUpRight, FiExternalLink, FiCode } from 'react-icons/fi'
 
 type Category = 'AI' | 'WEB' | 'AUTOMATION'
@@ -51,6 +51,30 @@ const PROJECTS: Project[] = [
     ],
     theme: 'rose',
     previewLabel: 'RAG · SaaS',
+  },
+  {
+    id: 'jobradar-ai',
+    title: 'JobRadar AI',
+    tagline: 'An AI agent team that hunts jobs for you — daily',
+    description:
+      'A multi-agent pipeline that scrapes remote dev jobs, ranks each one 0–100 against your profile using a multi-model AI consensus (Claude Opus + Haiku), and ships a daily digest — running itself every morning via GitHub Actions.',
+    category: 'AUTOMATION',
+    status: 'live',
+    year: '2026',
+    tags: [
+      { label: 'Node.js', icon: <SiNodedotjs /> },
+      { label: 'Playwright', icon: <FiCode /> },
+      { label: 'Claude AI', icon: <SiClaude /> },
+      { label: 'GitHub Actions', icon: <SiGithubactions /> },
+    ],
+    repo: 'https://github.com/PuriphatXXVII/jobradar-ai',
+    highlights: [
+      'Multi-agent pipeline — Scout (Playwright scrape) → Matcher (AI rank) → Reporter (digest) → Orchestrator',
+      'Multi-model consensus — Claude Opus + Haiku score each job independently; disagreements get flagged for review',
+      'Fully automated — runs itself daily on GitHub Actions and commits the fresh digest (~16s end-to-end)',
+    ],
+    theme: 'amber',
+    previewLabel: 'Multi-Agent · AI',
   },
   {
     id: 'ai-cicd-monitor',
