@@ -2,8 +2,15 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { FaGithub, FaPython, FaDiscord } from 'react-icons/fa'
-import { SiClaude, SiFastapi, SiGithubactions, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiTypescript, SiTailwindcss, SiVite } from 'react-icons/si'
-import { FiArrowLeft, FiArrowUpRight, FiExternalLink, FiCode } from 'react-icons/fi'
+import { SiClaude, SiFastapi, SiGithubactions, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiTypescript, SiTailwindcss, SiVite, SiOpenai, SiGooglegemini } from 'react-icons/si'
+import { FiArrowLeft, FiArrowUpRight, FiExternalLink, FiCode, FiMaximize2 } from 'react-icons/fi'
+
+// Pixel Studio screenshots
+import pxCover from '../assets/Pixelstudio/Modelbattle1.jpg'
+import pxBoard from '../assets/Pixelstudio/Modelbattle2.jpg'
+import pxStudio from '../assets/Pixelstudio/Criticloop1.jpg'
+import pxCritic from '../assets/Pixelstudio/Criticloop2.jpg'
+import pxComponent from '../assets/Pixelstudio/Criticloop3.jpg'
 
 type Category = 'AI' | 'WEB' | 'AUTOMATION'
 type Status = 'live' | 'in-progress' | 'concept'
@@ -23,6 +30,9 @@ type Project = {
   highlights: string[]
   theme: ThemeKey
   previewLabel: string
+  cover?: string
+  tile?: string
+  gallery?: { src: string; caption: string; tag?: string }[]
 }
 
 // 👉 เพิ่มโปรเจกต์ที่นี่
@@ -81,24 +91,33 @@ const PROJECTS: Project[] = [
     title: 'Pixel Studio',
     tagline: 'AI models design UI — and judge their own work',
     description:
-      'A multi-model agent studio that designs UI components: a Builder generates a Tailwind component, a vision Critic (Claude) looks at the rendered screenshot and drives a revise loop, and rival models battle head-to-head on a leaderboard.',
+      'A multi-model design studio where AI builds UI components and grades its own work by looking at the pixels. Models from three vendors collaborate: in a role-based relay they take turns refining one component, and in Model Battle they go head-to-head — every round judged by a vision Critic (Claude) that scores the rendered screenshot. Bring-your-own-key, shipped live on Railway.',
     category: 'AI',
     status: 'live',
     year: '2026',
     tags: [
+      { label: 'Next.js', icon: <SiNextdotjs /> },
       { label: 'Claude Vision', icon: <SiClaude /> },
+      { label: 'OpenAI', icon: <SiOpenai /> },
+      { label: 'Gemini', icon: <SiGooglegemini /> },
       { label: 'Playwright', icon: <FiCode /> },
-      { label: 'Node.js', icon: <SiNodedotjs /> },
-      { label: 'Tailwind', icon: <SiTailwindcss /> },
     ],
     repo: 'https://github.com/PuriphatXXVII/pixel-studio',
+    demo: 'https://pixel-studio-production-c409.up.railway.app',
     highlights: [
-      'Vision-critic loop — Claude looks at the rendered screenshot, scores it, and the builder revises until it passes',
-      'Model Battle — rival models design the same brief; a leaderboard tracks win-rate (Opus avg 8.0 vs Haiku 7.7)',
-      'Pluggable multi-model panel + keyless stub fallback; built end-to-end with Node + Playwright',
+      '3-vendor Model Battle — Anthropic (Opus + Sonnet), OpenAI (GPT-5.5) and Google (Gemini 3.1 Pro) design the same brief; a vision Critic scores each rendered result and a persistent leaderboard tracks win-rate',
+      'Multi-model role relay — Gemini (Designer) → Opus (Architect) → Sonnet (Refiner) → GPT (Finisher) improve one component round by round, judged by a consistent Claude-Opus vision critic until it passes ≥8/10',
+      'BYOK + shipped live — visitors bring their own API keys (stored in-browser, never logged); deployed on Railway via Docker with server-side Playwright rendering',
     ],
     theme: 'violet',
     previewLabel: 'Multi-Model · AI',
+    cover: pxStudio,
+    gallery: [
+      { tag: 'Model Battle', src: pxCover, caption: '4 vendors design the same brief — scored head-to-head by the vision critic' },
+      { tag: 'Model Battle', src: pxBoard, caption: 'Persistent leaderboard — win-rate tracked across every run' },
+      { tag: 'Critic loop', src: pxCritic, caption: 'A model designs; the vision critic scores the rendered screenshot 8/10' },
+      { tag: 'Critic loop', src: pxComponent, caption: 'A generated Thai login form, rendered full-screen' },
+    ],
   },
   {
     id: 'ai-cicd-monitor',
@@ -196,6 +215,7 @@ const STATUS = {
 // === ProjectTile (กดเพื่อดูรายละเอียด) ===
 function ProjectTile({ project, onSelect }: { project: Project; onSelect: () => void }) {
   const theme = THEME[project.theme]
+  const img = project.tile
   return (
     <motion.button
       onClick={onSelect}
@@ -204,30 +224,39 @@ function ProjectTile({ project, onSelect }: { project: Project; onSelect: () => 
       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       className={`relative block w-full rounded-2xl overflow-hidden cursor-pointer aspect-4/3 bg-linear-to-br ${theme.bg} group shadow-lg text-left`}
     >
-      {/* glow */}
-      <motion.div
-        className={`absolute -top-16 -left-16 w-64 h-64 ${theme.glow} rounded-full blur-3xl opacity-50 pointer-events-none`}
-        animate={{ x: [0, 20, 0], y: [0, 15, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="absolute -bottom-12 -right-10 w-56 h-56 bg-white/25 rounded-full blur-3xl pointer-events-none"
-        animate={{ scale: [1, 1.15, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-      />
+      {img ? (
+        <img
+          src={img}
+          alt={project.title}
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+      ) : (
+        <>
+          {/* glow */}
+          <motion.div
+            className={`absolute -top-16 -left-16 w-64 h-64 ${theme.glow} rounded-full blur-3xl opacity-50 pointer-events-none`}
+            animate={{ x: [0, 20, 0], y: [0, 15, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute -bottom-12 -right-10 w-56 h-56 bg-white/25 rounded-full blur-3xl pointer-events-none"
+            animate={{ scale: [1, 1.15, 1] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          {/* center preview label */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-0">
+            <FiCode size={32} className="text-white/70 mb-2" />
+            <span className="text-white font-black text-xl md:text-2xl drop-shadow-lg">
+              {project.previewLabel}
+            </span>
+          </div>
+        </>
+      )}
 
       {/* category badge */}
       <span className="absolute top-3 right-3 bg-black/40 text-white text-[10px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider z-10 backdrop-blur-md">
         {project.category}
       </span>
-
-      {/* center preview label */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 z-0">
-        <FiCode size={32} className="text-white/70 mb-2" />
-        <span className="text-white font-black text-xl md:text-2xl drop-shadow-lg">
-          {project.previewLabel}
-        </span>
-      </div>
 
       {/* bottom overlay with title */}
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-linear-to-t from-black/85 via-black/40 to-transparent z-10">
@@ -247,6 +276,7 @@ function ProjectTile({ project, onSelect }: { project: Project; onSelect: () => 
 function ProjectDetail({ project, onBack }: { project: Project; onBack: () => void }) {
   const theme = THEME[project.theme]
   const status = STATUS[project.status]
+  const [zoom, setZoom] = useState<string | null>(null)
 
   return (
     <motion.div
@@ -265,34 +295,53 @@ function ProjectDetail({ project, onBack }: { project: Project; onBack: () => vo
       </button>
 
       {/* === Big preview === */}
-      <div className={`relative h-60 md:h-72 rounded-3xl overflow-hidden bg-linear-to-br ${theme.bg} mb-6`}>
-        <motion.div
-          className={`absolute -top-20 -left-20 w-96 h-96 ${theme.glow} rounded-full blur-3xl opacity-50`}
-          animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <motion.div
-          className="absolute -bottom-20 -right-16 w-80 h-80 bg-white/30 rounded-full blur-3xl"
-          animate={{ x: [0, -20, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-        />
-
-        <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
-          <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border backdrop-blur-md ${status.cls}`}>
-            {status.label}
-          </span>
-          <span className="text-white/85 text-xs font-bold tracking-widest uppercase backdrop-blur-md bg-black/25 px-3 py-1.5 rounded-full">
-            {project.year}
-          </span>
+      {project.cover ? (
+        <div className="relative h-52 md:h-64 rounded-3xl overflow-hidden mb-6 ring-1 ring-white/10 bg-black">
+          <img
+            src={project.cover}
+            alt={`${project.title} preview`}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute top-4 right-4 flex items-center gap-2">
+            <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border backdrop-blur-md ${status.cls}`}>
+              {status.label}
+            </span>
+            <span className="text-white/85 text-xs font-bold tracking-widest uppercase backdrop-blur-md bg-black/40 px-3 py-1.5 rounded-full">
+              {project.year}
+            </span>
+          </div>
         </div>
+      ) : (
+        <div className={`relative h-60 md:h-72 rounded-3xl overflow-hidden bg-linear-to-br ${theme.bg} mb-6`}>
+          <motion.div
+            className={`absolute -top-20 -left-20 w-96 h-96 ${theme.glow} rounded-full blur-3xl opacity-50`}
+            animate={{ x: [0, 30, 0], y: [0, 20, 0] }}
+            transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="absolute -bottom-20 -right-16 w-80 h-80 bg-white/30 rounded-full blur-3xl"
+            animate={{ x: [0, -20, 0], scale: [1, 1.1, 1] }}
+            transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+          />
 
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
-          <FiCode size={48} className="text-white/80 mb-3" />
-          <p className="text-white text-3xl md:text-4xl font-black tracking-tight drop-shadow-lg">
-            {project.previewLabel}
-          </p>
+          <div className="absolute top-5 left-5 right-5 flex items-center justify-between">
+            <span className={`inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full border backdrop-blur-md ${status.cls}`}>
+              {status.label}
+            </span>
+            <span className="text-white/85 text-xs font-bold tracking-widest uppercase backdrop-blur-md bg-black/25 px-3 py-1.5 rounded-full">
+              {project.year}
+            </span>
+          </div>
+
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+            <FiCode size={48} className="text-white/80 mb-3" />
+            <p className="text-white text-3xl md:text-4xl font-black tracking-tight drop-shadow-lg">
+              {project.previewLabel}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* === Content === */}
       <h2 className="text-3xl md:text-4xl font-black tracking-tight leading-tight">{project.title}</h2>
@@ -324,6 +373,39 @@ function ProjectDetail({ project, onBack }: { project: Project; onBack: () => vo
         ))}
       </ul>
 
+      {/* Gallery */}
+      {project.gallery && project.gallery.length > 0 && (
+        <>
+          <h3 className="text-white font-bold text-lg mt-8 mb-3">Gallery</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {project.gallery.map((g) => (
+              <button
+                key={g.src}
+                onClick={() => setZoom(g.src)}
+                className="group relative rounded-xl overflow-hidden ring-1 ring-white/10 hover:ring-white/40 transition text-left"
+              >
+                <img
+                  src={g.src}
+                  alt={g.caption}
+                  className="w-full aspect-video object-cover object-top group-hover:scale-[1.03] transition-transform duration-300"
+                />
+                {g.tag && (
+                  <span className="absolute top-2 left-2 text-[10px] font-bold px-2 py-1 rounded-full bg-black/55 backdrop-blur-md text-white/90 border border-white/15">
+                    {g.tag}
+                  </span>
+                )}
+                <span className="absolute top-2 right-2 bg-black/50 backdrop-blur-md rounded-full p-1.5 text-white opacity-0 group-hover:opacity-100 transition">
+                  <FiMaximize2 size={13} />
+                </span>
+                <span className="absolute inset-x-0 bottom-0 p-2.5 text-[11px] text-gray-200 bg-linear-to-t from-black/85 to-transparent leading-snug">
+                  {g.caption}
+                </span>
+              </button>
+            ))}
+          </div>
+        </>
+      )}
+
       {/* Actions */}
       <div className="flex flex-wrap items-center gap-3 mt-8 pt-6 border-t border-gray-800">
         {project.demo && (
@@ -349,6 +431,28 @@ function ProjectDetail({ project, onBack }: { project: Project; onBack: () => vo
           </a>
         )}
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {zoom && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setZoom(null)}
+            className="fixed inset-0 z-[10000] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 cursor-zoom-out"
+          >
+            <img src={zoom} alt="preview" className="max-w-full max-h-[92vh] rounded-xl shadow-2xl ring-1 ring-white/15" />
+            <button
+              onClick={() => setZoom(null)}
+              aria-label="Close"
+              className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center"
+            >
+              ✕
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   )
 }
