@@ -30,7 +30,7 @@ export default function AboutSection() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <InfoCard label="Age" value="23 years old" />
             <InfoCard label="Status" value="CS Student" />
-            <InfoCard label="Interests" value="AI-Automation, Full-Stack" />
+            <InfoCard label="Interests" value={"AI‑Automation, Full‑Stack"} />
           </div>
         </div>
 
