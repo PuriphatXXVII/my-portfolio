@@ -16,20 +16,21 @@ export default function AboutSection() {
           </p>
 
           <p className="text-gray-700 text-base md:text-lg mb-2 leading-relaxed max-w-2xl">
-            Computer Science student based in Bangkok, specializing in full-stack development and
-            AI automation. Dedicated to building intelligent systems that automate workflows and
-            turn complex problems into elegant, real-world solutions.
+            Computer Science student at Bangkok University, specializing in full-stack development
+            and AI automation within the School of Information Technology and Innovation. Dedicated
+            to building intelligent systems that automate workflows and turn complex problems into
+            elegant, real-world solutions.
           </p>
 
           <blockquote className="border-l-4 border-blue-500 pl-6 py-2 italic text-gray-600 text-lg md:text-xl my-10 max-w-2xl leading-relaxed">
-            "I'm dedicated to creating intelligent digital experiences that automate the boring
-            so people can focus on what matters."
+            "I am dedicated to crafting intelligent digital experiences that automate repetitive
+            tasks, enabling individuals and businesses to focus on strategic growth."
           </blockquote>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <InfoCard label="Age" value="22 years old" />
+            <InfoCard label="Age" value="23 years old" />
             <InfoCard label="Status" value="CS Student" />
-            <InfoCard label="Interests" value="AI, Automation, Full-Stack" />
+            <InfoCard label="Interests" value="AI-Automation, Full-Stack" />
           </div>
         </div>
 
@@ -46,7 +47,9 @@ export default function AboutSection() {
             <p className="text-gray-500 text-xs mb-1 font-medium">2022 — Present</p>
             <p className="text-gray-900 font-bold text-lg leading-tight">Computer Science</p>
             <p className="text-blue-600 text-sm font-semibold mt-1">Bangkok University</p>
-            <p className="text-gray-500 text-sm italic mt-0.5">School of IT &amp; Innovation</p>
+            <p className="text-gray-500 text-sm italic mt-0.5">
+              School of Information Technology and Innovation
+            </p>
           </SectionBlock>
         </aside>
       </div>

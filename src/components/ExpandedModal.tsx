@@ -35,7 +35,7 @@ function HeroPanel({ techReady }: { techReady: boolean }) {
         </h2>
 
         <p className="text-blue-100/90 text-sm md:text-base lg:text-lg mb-8 max-w-xl leading-relaxed">
-          I'm a Computer Science student based in Bangkok, passionate about bridging the gap between full-stack development and AI. From building functional dashboards to automating CI/CD pipelines, I love crafting smart solutions for complex problems.
+          Computer Science student and full-stack developer at Bangkok University, specializing in AI-driven automation. I integrate advanced AI capabilities into scalable web applications and automated pipelines, transforming complex operational challenges into streamlined, intelligent solutions.
         </p>
 
         <a

@@ -216,14 +216,14 @@ export default function HomeGrid({ setExpanded }: HomeGridProps) {
           <p className="text-gray-500 text-xs md:text-sm font-semibold mb-2 tracking-widest uppercase">About Me</p>
           <h2 className="text-gray-900 text-3xl font-bold leading-tight">Learn more about me</h2>
           <p className="text-gray-600 text-base mt-4 leading-relaxed">
-            CS Student passionate about AI &amp; automation. Based in Bangkok.
+            CS Student passionate about AI &amp; automation. Based at Bangkok University.
           </p>
 
           <motion.div className="inline-flex items-center gap-1.5 mt-4 bg-white border border-gray-200 px-3 py-1.5 rounded-full shadow-sm"
             animate={{ y: [0, -3, 0] }}
             transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}>
             <FiMapPin size={12} className="text-blue-600" />
-            <span className="text-gray-700 text-xs font-bold">Bangkok, TH</span>
+            <span className="text-gray-700 text-xs font-bold">Bangkok University, TH</span>
           </motion.div>
         </div>
         <p className="text-gray-400 text-xs md:text-sm mt-6 font-medium relative z-10">Tap to know more →</p>
