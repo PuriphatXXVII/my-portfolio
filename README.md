@@ -1,10 +1,10 @@
 <div align="center">
 
-# 🪪 Puriphat Srikamnoi — Portfolio
+# 🪪 BrownieCookies — Portfolio
 
-เว็บพอร์ตโฟลิโอส่วนตัว ออกแบบและพัฒนาเองทั้งหมด ด้วยดีไซน์แบบ **bento-grid** กดการ์ดเพื่อขยายดูรายละเอียด
+เว็บ Portfolio ส่วนตัว ออกแบบและพัฒนาเองทั้งหมด
 
-[![Live Site](https://img.shields.io/badge/🌐_เปิดเว็บจริง-puriphatxxvii.github.io-58A6FF?style=for-the-badge)](https://puriphatxxvii.github.io/my-portfolio)
+[![Live Site](https://img.shields.io/badge/🌐_Live_Site-puriphatxxvii.github.io-58A6FF?style=for-the-badge)](https://puriphatxxvii.github.io/my-portfolio)
 &nbsp;
 [![GitHub](https://img.shields.io/badge/GitHub-PuriphatXXVII-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/PuriphatXXVII)
 
@@ -14,21 +14,11 @@
 
 ## 👋 เกี่ยวกับผม
 
-สวัสดีครับ ผมชื่อ **ภูริภัทร ศรีคำน้อย (Puriphat)** — นักศึกษาวิทยาการคอมพิวเตอร์และนักพัฒนา Full-Stack ที่ **มหาวิทยาลัยกรุงเทพ** (คณะเทคโนโลยีสารสนเทศและนวัตกรรม)
+สวัสดีครับ ผมชื่อ **ภูริภัทร ศรีคำน้อย (ยีนส์)** — นักศึกษาสาขาวิทยาการคอมพิวเตอร์ที่ **มหาวิทยาลัยกรุงเทพ** (คณะเทคโนโลยีสารสนเทศและนวัตกรรม)
 
 ผมสนใจสาย **AI Automation** เป็นพิเศษ — ชอบนำความสามารถของ AI มาผสานเข้ากับเว็บแอปและระบบอัตโนมัติ เพื่อเปลี่ยนงานที่ซับซ้อนให้กลายเป็นโซลูชันที่เรียบง่ายและทำงานได้จริง พอร์ตนี้รวบรวมโปรเจกต์ที่ผมสร้างเอง ตั้งแต่ RAG SaaS ไปจนถึงระบบ multi-agent AI
 
 > 💡 *"ผมตั้งใจสร้างประสบการณ์ดิจิทัลอัจฉริยะที่ช่วยทำงานซ้ำๆ ให้เป็นอัตโนมัติ เพื่อให้คนและธุรกิจโฟกัสกับการเติบโตได้เต็มที่"*
-
----
-
-## ✨ จุดเด่นของเว็บนี้
-
-- 🎴 **Bento-grid layout** — จัดวางการ์ดแบบโมเดิร์น กดการ์ดเพื่อขยายดูเนื้อหาเต็ม
-- 🌀 **Shared-element transitions** — แอนิเมชันลื่นไหลด้วย Framer Motion (`layoutId`)
-- 🧭 **Scroll-spy navigation** — เมนูนำทางแบบกดเลือกการ์ด ไม่ต้องเลื่อนหา
-- ⚡ **GPU-accelerated marquee** — แถบ Tech Stack เลื่อนวนแบบลื่น หยุด/เล่นได้
-- 📱 **Responsive + PWA** — รองรับทุกขนาดจอ และติดตั้งเป็นแอปได้
 
 ---
 
