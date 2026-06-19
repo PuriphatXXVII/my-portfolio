@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { FaGithub, FaPython, FaDiscord } from 'react-icons/fa'
-import { SiClaude, SiFastapi, SiGithubactions, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiTypescript, SiTailwindcss, SiVite, SiOpenai, SiGooglegemini } from 'react-icons/si'
+import { SiClaude, SiFastapi, SiGithubactions, SiNextdotjs, SiNodedotjs, SiPostgresql, SiReact, SiTypescript, SiTailwindcss, SiVite, SiOpenai, SiGooglegemini, SiExpo, SiSupabase } from 'react-icons/si'
 import { FiArrowLeft, FiArrowUpRight, FiExternalLink, FiCode, FiMaximize2 } from 'react-icons/fi'
 
 // Pixel Studio screenshots
@@ -14,7 +14,7 @@ import pxComponent from '../assets/Pixelstudio/Criticloop3.jpg'
 
 type Category = 'AI' | 'WEB' | 'AUTOMATION'
 type Status = 'live' | 'in-progress' | 'concept'
-type ThemeKey = 'indigo' | 'emerald' | 'rose' | 'amber' | 'violet'
+type ThemeKey = 'indigo' | 'emerald' | 'rose' | 'amber' | 'violet' | 'sky'
 
 type Project = {
   id: string
@@ -120,6 +120,29 @@ const PROJECTS: Project[] = [
     ],
   },
   {
+    id: 'flashcard-hsk',
+    title: 'FlashCard',
+    tagline: 'AI-enriched flashcards for learning HSK Chinese',
+    description:
+      'A cross-platform mobile app for learning Chinese (HSK) vocabulary: flashcard review, custom folders, progress stats, and text-to-speech pronunciation. On-device Gemini auto-enriches any custom word you add — generating its pinyin, translation, and an example sentence — while the app talks straight to Supabase with no API server in between.',
+    category: 'AI',
+    status: 'in-progress',
+    year: '2026',
+    tags: [
+      { label: 'React Native', icon: <SiReact /> },
+      { label: 'Expo', icon: <SiExpo /> },
+      { label: 'Supabase', icon: <SiSupabase /> },
+      { label: 'Gemini', icon: <SiGooglegemini /> },
+    ],
+    highlights: [
+      'Serverless re-architecture — dropped the Python backend so the app talks directly to Supabase (Auth + Postgres), with on-device Gemini for AI enrichment; nothing to host or run',
+      'Security hardening — Row-Level Security policies + schema migrations (client-write RLS, unique-constraint sync) so each user’s progress and folders stay private and custom-word upserts never collide',
+      'Real learning UX — HSK pool, custom folders, spaced review and stats, Expo Speech text-to-speech pronunciation, Zustand global state, and AsyncStorage offline cache',
+    ],
+    theme: 'sky',
+    previewLabel: 'React Native · AI',
+  },
+  {
     id: 'ai-cicd-monitor',
     title: 'AI-Powered CI/CD Monitor',
     tagline: 'Pipelines that explain themselves',
@@ -203,6 +226,12 @@ const THEME = {
     glow: 'bg-violet-400',
     chip: 'bg-violet-500/20 text-violet-200 border-violet-300/30',
     accent: 'text-violet-300',
+  },
+  sky: {
+    bg: 'from-sky-400 via-cyan-500 to-blue-600',
+    glow: 'bg-sky-300',
+    chip: 'bg-sky-500/20 text-sky-200 border-sky-300/30',
+    accent: 'text-sky-300',
   },
 } as const
 
