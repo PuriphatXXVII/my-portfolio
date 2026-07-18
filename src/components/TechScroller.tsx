@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { FaPython, FaJava, FaHtml5, FaCss3Alt, FaReact, FaNodeJs, FaDocker, FaGitAlt, FaRobot, FaDatabase, FaPlay, FaPause, FaTheaterMasks } from 'react-icons/fa';
-import { SiTypescript, SiJavascript, SiSharp, SiNextdotjs, SiVite, SiTailwindcss, SiDotnet, SiExpress, SiSocketdotio, SiMongodb, SiPostgresql, SiGithubactions, SiFastapi, SiSupabase, SiVercel, SiRailway, SiRedis, SiClerk, SiAnthropic, SiOpenai, SiGooglegemini } from 'react-icons/si';
+import { SiTypescript, SiJavascript, SiSharp, SiNextdotjs, SiVite, SiTailwindcss, SiDotnet, SiExpress, SiSocketdotio, SiMongodb, SiPostgresql, SiGithubactions, SiFastapi, SiSupabase, SiVercel, SiRailway, SiRedis, SiClerk, SiAnthropic, SiOpenai, SiGooglegemini, SiVitest, SiMistralai } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 
 const techGroups = [
@@ -10,8 +10,8 @@ const techGroups = [
   { title: 'Frontend', items: ['React', 'Next.js', 'Vite', 'Tailwind CSS', '.NET MAUI'] },
   { title: 'Backend', items: ['FastAPI', 'Node.js', 'Express', '.NET Backend', 'Socket.io', 'Clerk'] },
   { title: 'Database', items: ['PostgreSQL', 'MongoDB', 'SQL', 'Redis'] },
-  { title: 'Cloud & DevOps', items: ['Vercel', 'Railway', 'Supabase', 'GitHub Actions', 'Docker', 'Playwright', 'Git', 'VS Code'] },
-  { title: 'AI', items: ['Claude AI', 'Anthropic API', 'OpenAI API', 'Gemini API', 'Voyage AI', 'Prompt Engineering'] }
+  { title: 'Cloud & DevOps', items: ['Vercel', 'Railway', 'Supabase', 'GitHub Actions', 'Docker', 'Playwright', 'Vitest', 'Git', 'VS Code'] },
+  { title: 'AI', items: ['Claude AI', 'Anthropic API', 'OpenAI API', 'Gemini API', 'DeepSeek API', 'OpenRouter', 'Mistral AI', 'Voyage AI', 'Prompt Engineering'] }
 ];
 
 const getIcon = (tech: string) => {
@@ -50,6 +50,10 @@ const getIcon = (tech: string) => {
     case 'OpenAI API': return <SiOpenai className="text-gray-900 text-lg" />;
     case 'Gemini API': return <SiGooglegemini className="text-blue-500 text-lg" />;
     case 'Playwright': return <FaTheaterMasks className="text-emerald-600 text-lg" />;
+    case 'Vitest': return <SiVitest className="text-lime-600 text-lg" />;
+    case 'Mistral AI': return <SiMistralai className="text-orange-500 text-lg" />;
+    case 'DeepSeek API':
+    case 'OpenRouter':
     case 'Voyage AI':
     case 'Prompt Engineering': return <FaRobot className="text-indigo-500 text-lg" />;
     default: return <span className="w-2 h-2 rounded-full bg-gray-400"></span>;
