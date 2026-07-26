@@ -65,9 +65,9 @@ const PROJECTS: Project[] = [
   {
     id: 'jobradar-ai',
     title: 'JobRadar AI',
-    tagline: 'An AI agent team that hunts jobs for you — daily',
+    tagline: 'An AI agent team that hunts jobs for you',
     description:
-      'A multi-agent pipeline that scrapes remote dev jobs, ranks each one 0–100 against your profile using a multi-model AI consensus (Claude Opus + Haiku), and ships a daily digest — running itself every morning via GitHub Actions.',
+      'A multi-agent pipeline that scrapes remote dev jobs, ranks each one 0–100 against your profile using a multi-model AI consensus (Claude Opus + Haiku), and ships a ranked digest — the whole run driven end-to-end by GitHub Actions.',
     category: 'AUTOMATION',
     status: 'live',
     year: '2026',
@@ -81,7 +81,8 @@ const PROJECTS: Project[] = [
     highlights: [
       'Multi-agent pipeline — Scout (Playwright scrape) → Matcher (AI rank) → Reporter (digest) → Orchestrator',
       'Multi-model consensus — Claude Opus + Haiku score each job independently; disagreements get flagged for review',
-      'Fully automated — runs itself daily on GitHub Actions and commits the fresh digest (~16s end-to-end)',
+      'Fault-tolerant — a failing AI judge is skipped, and if every judge is down the pipeline degrades to a keyword ranker instead of dying',
+      'Fully automated — one GitHub Actions workflow runs the pipeline end-to-end (~16s) and commits the fresh digest; ran green on a daily cron for a month',
     ],
     theme: 'amber',
     previewLabel: 'Multi-Agent · AI',
